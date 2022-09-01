@@ -1,6 +1,5 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import colors from 'colors'
 
 import {errorHandler} from './middleware/errorMiddleware'
 import {connectDB} from './config/db'
@@ -18,7 +17,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 // Routes
+app.use('/api/products', require('./routes/productRoutes'))
+app.use('/api/categories', require('./routes/categoryRoutes'))
 app.use('/api/reviews', require('./routes/reviewRoutes'))
+app.use('/api/cart', require('./routes/cartRoutes'))
+app.use('/api/address', require('./routes/addressRoutes'))
 
 // Error handler
 app.use(errorHandler)

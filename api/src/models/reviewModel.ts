@@ -1,20 +1,20 @@
 import mongoose, { Document, ObjectId, Schema } from 'mongoose'
 
 export interface ReviewDocument extends Document {
-    reviewerId: number
-    productId: number
+    reviewerId: ObjectId
+    productId: ObjectId
     rate: 1 | 2 | 3 | 4 | 5
     text: string
 }
 
 const ReviewSchema = new Schema<ReviewDocument>({
     reviewerId: {
-      type: Number,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'Please, add reviewer ID'],
     },
     productId: {
-      type: Number,
+      type: Schema.Types.ObjectId,
       ref: 'Product',
       // we make it unique to prevent the possibility of leaving more than 1 review for the same product from the same user
       unique: true, 
@@ -35,5 +35,4 @@ const ReviewSchema = new Schema<ReviewDocument>({
 })
   
 const Review = mongoose.model<ReviewDocument>('Review', ReviewSchema)
-
 export default Review
