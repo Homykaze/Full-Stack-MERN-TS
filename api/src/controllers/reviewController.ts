@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import asyncHandler from 'express-async-handler'
-import { globalAgent } from "http"
 
 import Review from '../models/reviewModel'
 
