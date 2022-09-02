@@ -1,12 +1,13 @@
 import express from 'express'
 import {getCart, setCart, updateCart, deleteCart} from '../controllers/cartController'
+import {protect} from '../middleware/authMiddleware'
 
-export const router = express.Router()
+const router = express.Router()
 
 router.route('/')
-    .get(getCart)
-    .post(setCart)
-    .put(updateCart)
-    .delete(deleteCart)
+    .get(protect, getCart)
+    .post(protect, setCart)
+    .put(protect, updateCart)
+    .delete(protect, deleteCart)
 
 module.exports = router

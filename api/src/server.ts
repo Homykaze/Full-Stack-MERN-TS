@@ -20,6 +20,7 @@ app.use(express.urlencoded({extended: false}))
 app.use('/api/products', require('./routes/productRoutes'))
 app.use('/api/categories', require('./routes/categoryRoutes'))
 app.use('/api/reviews', require('./routes/reviewRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/cart', require('./routes/cartRoutes'))
 app.use('/api/address', require('./routes/addressRoutes'))
 

@@ -13,25 +13,25 @@ export interface UserDocument extends Document {
 const UserSchema = new Schema<UserDocument>({
   firstname: {
     type: String,
-    required: true,
+    required: [true, 'Please, add the firstname']
   },
   lastname: {
     type: String,
-    required: true,
+    required: [true, 'Please, add the lastname']
   },
   username: {
     type: String,
-    required: true,
+    required: [true, 'Please, add a username'],
     unique: true,
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Please, add an email'],
     unique: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Please, add a password']
   },
   reviews: [
     {

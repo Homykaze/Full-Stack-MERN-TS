@@ -1,9 +1,10 @@
 import express from 'express'
 import {getReviews, setReview, updateReview, deleteReview} from '../controllers/reviewController'
+import {protect} from '../middleware/authMiddleware'
 
-export const router = express.Router()
+const router = express.Router()
 
-router.route('/').get(getReviews).post(setReview)
-router.route('/:id').put(updateReview).delete(deleteReview)
+router.route('/').get(protect, getReviews).post(protect, setReview)
+router.route('/:id').put(protect, updateReview).delete(protect, deleteReview)
 
 module.exports = router

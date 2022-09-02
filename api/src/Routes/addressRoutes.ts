@@ -1,12 +1,13 @@
 import express from 'express'
 import {getAddress, setAddress, updateAddress, deleteAddress} from '../controllers/addressController'
+import {protect} from '../middleware/authMiddleware'
 
-export const router = express.Router()
+const router = express.Router()
 
 router.route('/')
-    .get(getAddress)
-    .post(setAddress)
-    .put(updateAddress)
-    .delete(deleteAddress)
+    .get(protect, getAddress)
+    .post(protect, setAddress)
+    .put(protect, updateAddress)
+    .delete(protect, deleteAddress)
 
 module.exports = router

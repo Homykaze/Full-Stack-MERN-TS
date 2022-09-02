@@ -1,6 +1,7 @@
-import mongoose, { Document, Schema } from 'mongoose'
+import mongoose, { Document, ObjectId, Schema } from 'mongoose'
 
 export interface AddressDocument extends Document {
+  user: ObjectId
   name: string
   city: string
   country: string
@@ -10,6 +11,11 @@ export interface AddressDocument extends Document {
 }
 
 const AddressSchema = new Schema<AddressDocument>({
+  user:{
+    type: Schema.Types.ObjectId,
+    required: [true, 'Please, add the associated user'],
+    ref: 'User'
+  },
   name: {
     type: String,
     required: true,

@@ -1,7 +1,7 @@
 import mongoose, { Document, ObjectId, Schema } from 'mongoose'
 
 export interface CartDocument extends Document {
-  userId: ObjectId
+  user: ObjectId
   products: [
     {
       productId: ObjectId
@@ -12,10 +12,10 @@ export interface CartDocument extends Document {
 }
 
 const CartSchema = new Schema<CartDocument>({
-  userId: {
+  user:{
     type: Schema.Types.ObjectId,
+    required: [true, 'Please, add the associated user'],
     ref: 'User',
-    required: true,
     // we make it unique to prevent the possibility of creating more than 1 cart for a single user
     unique: true
   },
