@@ -7,6 +7,7 @@ So far, only the backend is complete: managed to implement the CRUD functionalit
 Used JWT as a primary tool for authentification and authorization to eliminate possibilities of different users to access other users' data. Implemented a protective middleware to protect routes, however, some of them may need additional attention and testing to make sure protected routes work.
 
 ## Logic, simplified ERD
+Products must be only added by admins, working on a middleware handling this protection method.
 
 ### Users
 Each logged in user has the following protected fields:
