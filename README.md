@@ -10,12 +10,14 @@ Used JWT as a primary tool for authentification and authorization to eliminate p
 Products must be only added by admins, working on a middleware handling this protection method.
 
 ### Users
+Newly registered users can be registered as admins.
 Each logged in user has the following protected fields:
 - address
 - cart
 - reviews
 
 ### Products
+Products can only be added by admins.
 Each product has the following unprotected fields:
 - categories
 - reviews
