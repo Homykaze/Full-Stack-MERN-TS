@@ -17,7 +17,7 @@ export const getCart = asyncHandler(async (req: any, res: Response) => {
 // @access  Private
 export const setCart = asyncHandler(async (req: any, res: Response) => {
     const cart = await Cart.create({
-        //user: req.user.id,
+        user: req.user.id,
         products: req.body.products,
         paid: req.body.paid
     })

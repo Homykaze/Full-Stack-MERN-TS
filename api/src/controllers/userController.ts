@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import asyncHandler from 'express-async-handler'
 
+// Regular import doesn't work for these imports
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 

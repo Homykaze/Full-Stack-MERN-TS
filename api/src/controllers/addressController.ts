@@ -7,8 +7,8 @@ import User from '../models/userModel'
 // @desc    Get address
 // @route   GET /api/address
 // @access  Private
-export const getAddress = asyncHandler(async (req: Request, res: Response) => {
-    const address = await Address.find()
+export const getAddress = asyncHandler(async (req: any, res: Response) => {
+    const address = await Address.find({ user: req.user.id })
     res.status(200).json(address)
 })
 
@@ -54,7 +54,7 @@ export const setAddress = asyncHandler(async (req: any, res: Response) => {
 // @route   PUT /api/address
 // @access  Private
 export const updateAddress = asyncHandler(async (req: any, res: Response) => {
-    const address = await Address.findOne()
+    const address = await Address.findById(req.params.id)
 
     if (!address){
         res.status(400)
@@ -85,7 +85,7 @@ export const updateAddress = asyncHandler(async (req: any, res: Response) => {
 // @route   DELETE /api/address
 // @access  Private
 export const deleteAddress = asyncHandler(async (req: any, res: Response) => {
-    const address = await Address.findOne()
+    const address = await Address.findById(req.params.id)
 
     if (!address){
         res.status(400)
