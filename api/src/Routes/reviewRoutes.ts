@@ -1,11 +1,15 @@
 import express from 'express'
-import {getReviews, setReview, updateReview, deleteReview} from '../controllers/reviewController'
+import {getReviews, setReview, deleteReview} from '../controllers/reviewController'
 import {protect} from '../middleware/authMiddleware'
 
 const router = express.Router()
 
 // Get reviews must be available to everybody
-router.route('/').get(getReviews).post(protect, setReview)
-router.route('/:id').put(protect, updateReview).delete(protect, deleteReview)
+router.route('/')
+    .get(protect, getReviews)
+    .post(protect, setReview)
+// Users are not able to update their reviews, but can delete them if they change their mind
+router.route('/:id')
+    .delete(protect, deleteReview)
 
 module.exports = router

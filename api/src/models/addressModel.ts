@@ -2,7 +2,6 @@ import mongoose, { Document, ObjectId, Schema } from 'mongoose'
 
 export interface AddressDocument extends Document {
   user: ObjectId
-  name: string
   city: string
   country: string
   state: string
@@ -11,33 +10,31 @@ export interface AddressDocument extends Document {
 }
 
 const AddressSchema = new Schema<AddressDocument>({
-  user:{
+  user: {
     type: Schema.Types.ObjectId,
-    required: [true, 'Please, add the associated user'],
-    ref: 'User'
-  },
-  name: {
-    type: String,
     required: true,
+    // It needs to be unique to prevent users from creating more than 1 address
+    unique: true,
+    ref: 'User'
   },
   city: {
     type: String,
-    required: true,
+    required: [true, 'Please, add city!']
   },
   country: {
     type: String,
-    required: true,
+    required: [true, 'Please, add country!'],
   },
   state: {
     type: String,
   },
   street: {
     type: String,
-    required: true,
+    required: [true, 'Please, add street!'],
   },
   postalCode: {
     type: String,
-    required: true,
+    required: [true, 'Please, add postal code!'],
   }
 })
 

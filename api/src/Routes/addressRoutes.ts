@@ -7,6 +7,7 @@ const router = express.Router()
 router.route('/')
     .get(protect, getAddress)
     .post(protect, setAddress)
+router.route('/:id')
     .put(protect, updateAddress)
     .delete(protect, deleteAddress)
 
