@@ -14,17 +14,19 @@ export interface CartDocument extends Document {
 const CartSchema = new Schema<CartDocument>({
   user:{
     type: Schema.Types.ObjectId,
-    required: [true, 'Please, add the associated user'],
-    ref: 'User',
+    required: true,
     // we make it unique to prevent the possibility of creating more than 1 cart for a single user
-    unique: true
+    unique: true,
+    ref: 'User',
   },
-  products:[{
-    // Check the type
-    type: Schema.Types.Array,
-    ref: 'Product',
-    quantity: Number
-  }],
+  products:[
+    {
+      // Check the type
+      type: Schema.Types.ObjectId,
+      ref: 'Product',
+      quantity: Number
+    }
+  ],
   paid: {
     type: Boolean,
   }

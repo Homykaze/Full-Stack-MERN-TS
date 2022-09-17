@@ -7,6 +7,7 @@ const router = express.Router()
 router.route('/')
     .get(protect, getCart)
     .post(protect, setCart)
+router.route('/:id')
     .put(protect, updateCart)
     .delete(protect, deleteCart)
 

@@ -3,7 +3,7 @@ import mongoose, { Document, ObjectId, Schema } from 'mongoose'
 export interface ProductDocument extends Document {
   title: string
   price: number
-  sellerId: ObjectId
+  seller: ObjectId
   categories: ObjectId[]
   reviews: ObjectId[]
   images: string[]
@@ -19,7 +19,7 @@ const ProductSchema = new Schema<ProductDocument>(
       type: Number,
       required: true,
     },
-    sellerId: {
+    seller: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
@@ -51,7 +51,7 @@ const ProductSchema = new Schema<ProductDocument>(
   }
 )
 
-// Gives an error for now, needs to be fixed
+// Gives an error for now, but might not even be needed in future
 // ProductSchema.virtual('reviews', {
 //   ref: 'reviewModel',
 //   localField: '_id',

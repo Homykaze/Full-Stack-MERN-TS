@@ -16,13 +16,17 @@ export const getCart = asyncHandler(async (req: any, res: Response) => {
 // @route   POST /api/cart
 // @access  Private
 export const setCart = asyncHandler(async (req: any, res: Response) => {
+    // Assign paid status
+    let paidStatus = false;
+    if (req.body.paid === "true") paidStatus = true
+
     const cart = await Cart.create({
         user: req.user.id,
         products: req.body.products,
-        paid: req.body.paid
+        paid: paidStatus
     })
 
-    res.status(200).json(cart)
+    res.status(201).json(cart)
 })
 
 // @desc    Update cart
@@ -36,23 +40,20 @@ export const updateCart = asyncHandler(async (req: any, res: Response) => {
         throw new Error('Cart not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // Check for user
+    const user = await User.findById(req.user.id)
     if (!user) {
         res.status(401)
         throw new Error('User not found')
     }
 
-    // Make sure the logged in user matches the cart user
+    // Making sure the logged in user matches the cart user
     if(cart.user.toString() !== user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
 
-    //Check req.params
-    const updatedCart = await Cart.findOneAndUpdate(req.params, req.body, {new: true})
-
+    const updatedCart = await Cart.findOneAndUpdate(req.params.id, req.body, {new: true})
     res.status(200).json(updatedCart)
 })
 
@@ -60,28 +61,26 @@ export const updateCart = asyncHandler(async (req: any, res: Response) => {
 // @route   DELETE /api/cart
 // @access  Private
 export const deleteCart = asyncHandler(async (req: any, res: Response) => {
-    const cart: any = await Cart.findOne({ user: req.user.id})
+    const cart = await Cart.findById(req.params.id)
 
     if (!cart){
         res.status(400)
         throw new Error('Cart not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // Check for user
+    const user = await User.findById(req.user.id)
     if (!user) {
         res.status(401)
         throw new Error('User not found')
     }
 
-    // Make sure the logged in user matches the cart user
+    // Making sure the logged in user matches the cart user
     if(cart.user.toString() !== user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
 
     await cart.remove()
-
     res.status(200).json({id: req.params.id})
 })

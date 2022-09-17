@@ -28,7 +28,7 @@ export const setAddress = asyncHandler(async (req: any, res: Response) => {
         street: req.body.street,
         postalCode: req.body.postalCode
     })
-    res.status(200).json(address)
+    res.status(201).json(address)
 })
 
 // @desc    Update address
@@ -67,9 +67,9 @@ export const deleteAddress = asyncHandler(async (req: any, res: Response) => {
         res.status(400)
         throw new Error('Address not found')
     }
-
-    const user = await User.findById(req.user.id)
+    
     // Check for user
+    const user = await User.findById(req.user.id)
     if(!user){
         res.status(401)
         throw new Error('User not found')

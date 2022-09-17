@@ -7,10 +7,8 @@ So far, only the backend is complete: managed to implement the CRUD functionalit
 Used JWT as a primary tool for authentification and authorization to eliminate possibilities of different users to access other users' data. Implemented a protective middleware to protect routes, however, some of them may need additional attention and testing to make sure protected routes work.
 
 ## Logic, simplified ERD
-Products must be only added by admins, working on a middleware handling this protection method.
-
 ### Users
-Newly registered users can be registered as admins.
+Newly registered users can be registered as admins only directly by adding admin field to the request field, by default they are registered as just users with no rights to add or edit products or categories.
 Each logged in user has the following protected fields:
 - address
 - cart
@@ -23,16 +21,20 @@ Each product has the following unprotected fields:
 - reviews
 
 ### Cart
-Cart belongs to a user and contains:
+There can only be 1 cart per user. Carts are protected and belong to users and contain:
 - array of products
+- paid status (boolean, set false by default)
 
 ### Reviews
-Contains its own data and IDs of:
+Contains a text field and rate [1 - 5], as well as IDs of:
 - reviewer
 - product
 
 ### Category
-Consists of its own data only
+Consists of the following data fields:
+- name (or title)
+- image (string link)
+- admin ID who created it (to be able to edit it)
 
 ### Address
-Holds user's data primarily related to their address
+Holds user's data related to their address, holds user's ID as well

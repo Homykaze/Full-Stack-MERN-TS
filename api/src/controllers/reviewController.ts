@@ -27,7 +27,7 @@ export const setReview = asyncHandler(async (req: any, res: Response) => {
         rate: req.body.rate,
         text: req.body.text
     })
-    res.status(200).json(review)
+    res.status(201).json(review)
 })
 
 // @desc    Delete user's review

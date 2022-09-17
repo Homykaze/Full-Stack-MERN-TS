@@ -4,7 +4,7 @@ import {protect} from '../middleware/authMiddleware'
 
 const router = express.Router()
 
-// Get reviews must be available to everybody
+// Get reviews might be available to everybody
 router.route('/')
     .get(protect, getReviews)
     .post(protect, setReview)
