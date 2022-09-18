@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 import {errorHandler} from './middleware/errorMiddleware'
 import {connectDB} from './config/db'
@@ -15,6 +16,8 @@ const app = express()
 // This is to properly get data from requests
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+// This is to allow share data between various local ports
+app.use(cors())
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'))
