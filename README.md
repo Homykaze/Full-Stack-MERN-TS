@@ -1,6 +1,6 @@
 # Fullstack-Typescript-Project
 
-MongoDb, Express.js, and Node.js are wonderful tools in backend development, whereas React.js and Redux are amazing in frontend development. This project demonstrates a MERN full stack project combining these powerful tools together used in TypeScript. This is my first full stack project and my first experience working with databases.<br>
+MongoDb, Express.js, and Node.js are the tools to be commonly used in backend development, whereas React.js and Redux are amazing in frontend development. This project demonstrates a MERN full stack project combining these powerful tools together used in TypeScript. This is my first full stack project and my first experience working with databases.<br>
 
 Frontend is incomplete, but functional: it is possible to register new users of the web service, login and logout using the designed interface with react/redux toolkit.
 
